@@ -810,7 +810,10 @@ def SummarizeData(data, points=100, summary_func=max):
     start = 0
     while start < len(data):
         end = min(start + window_size, len(data))
-        summary_points.append(summary_func(data[start:end]))
+        points = data[start:end]
+        if not points:
+            points = [0]
+        summary_points.append(summary_func(points))
         start = end
     return summary_points
 
